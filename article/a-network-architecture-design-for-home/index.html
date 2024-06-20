@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Samersions ZHONG">
+    
+    <title>
+        
+            自用家庭网络架构设计及服务器配置浅谈 |
+        
+        山神斯博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/samlangten.jpg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.samersions.net","root":"/","language":"zh-CN"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/samlangten.jpg","favicon":"/images/samlangten.jpg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                山神斯博客
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">自用家庭网络架构设计及服务器配置浅谈</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/samlangten.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Samersions ZHONG</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2024-06-20 13:54:08</span>
+        <span class="mobile">2024-06-20 13:54</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%99%AE%E9%80%9A/">普通</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/NAS/">NAS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>大约是2020年的时候，尚在就读大学的笔者就有了购买NAS的想法。教育网内有许多出名的PT，比如当年笔者在玩的西工大蒲公英及东北大学六维空间。而玩PT需要长期的保种以及大量的存储空间，这种需求催生了笔者购买NAS或者说一台服务器的需求。由于笔者是一个影音爱好者，偏爱各种高质量的电影及连续剧，爱优腾哔甚至是奈迪H疯都俨然无法满足笔者的需要。即使笔者由于客观原因，在2021年～2022年间尝试短暂地将整个观影动作切换到流媒体上，但在体验了国内外各大流媒体服务器后，笔者还是决定回归线下，将观影依赖在本地的设备上。这使得笔者于2022年开始真正购入NAS——或是说家用服务器，并在2年内逐步将这套家庭网络架构及服务器配置设计升级到现在的规模。</p>
+<p>笔者最开始使用的是海康威视MAGE20双盘位NAS，这款机器本身是ARM机器，虽然内置了百度网盘和迅雷下载等功能，但显然无法满足笔者架设影音库的需求。为了实现存储以外的高阶功能，笔者额外搭配了联想ThinkCentre M73作为服务器使用。通过ESXi实现虚拟化后，笔者在里面安装了一个Debian的Linux服务器承载Docker服务，并安装了Jellyfin、qBittorrent等服务，同时安装OpenWRT作为旁路网关。</p>
+<p>M73小主机使用的是酷睿4代的低压版处理器，性能只能勉强支撑起旁路网关和Jellyfin的基本功能，孱弱的集成显卡无法为Jellyfin服务提供硬解。这套系统使用一年后，M73小主机的硬盘突然挂掉。在这机缘巧合下，笔者换了倍控N5105小主机，并将Hypervisor平台更换成了PVE。笔者当时有个错误认知，认为CPU自带的核心显卡能随着CPU的虚拟化而虚拟化至不同的VM内，但后来才意识到CPU自带的显卡尽管与CPU刻在同一块芯片上，但结构上是完全独立的设备。得益于PVE的LXC容器功能，无需将CPU的核显虚拟化即可在Docker内调用核显，尽管LXC不是完全虚拟化，但从实际使用而言确实比KVM轻量而快速。</p>
+<p>毕业后购入威联通TS-464C四盘位，后来陆续购买机柜并升级至现在的配置，各设备也逐渐升级更换成了可以上机架的款式，且架构整体从原先“存、算网分离”逐步演化成了现在的“存、算、网分离”。</p>
+<h1 id="基本网络架构设计、硬件选型及系统软件"><a href="#基本网络架构设计、硬件选型及系统软件" class="headerlink" title="基本网络架构设计、硬件选型及系统软件"></a>基本网络架构设计、硬件选型及系统软件</h1><h3 id="硬件选型"><a href="#硬件选型" class="headerlink" title="硬件选型"></a>硬件选型</h3><p>网络架构基本思想是存、算、网分离，三个功能各有专用硬件，并通过虚拟化实现具体功能：</p>
+<ul>
+<li><p><strong>存储</strong>：QNAP TS-464C，老牌NAS厂威联通4盘位成品，从老设备迁移过来，之后陆续购买4块HC550 16T，只运行存储功能和PBS备份；</p>
+</li>
+<li><p><strong>网络</strong>：Fisusen-J641，标准1U高度小主机性能足够，跑个若干个网络相关VM不在话下。如果不强求算网分离甚至可以跑下面的一些内部服务；</p>
+</li>
+<li><p><strong>计算</strong>：i7-13700K，核心多，配合PVE在Web页面可以绑核，控制VM在小核和大核内跑很舒服，64G内存跑VM基本已经足够，安装显卡和多个SSD供直通。该机是从电脑城奸商配的DIY主机，使用标准4U机箱放托盘上；</p>
+</li>
+<li><p><strong>交换机</strong>：杂牌的二层网管交换机，8电口2.5G+1光口10G，10G光口曾插猫棒用于电信宽带，后撤回用电信光猫；</p>
+</li>
+<li><p><strong>WiFi</strong>：小米CR6608，魔改刷了爱快的。原本内网使用爱快VM做主路由配合该WiFi进行统一热点管理，现配合OpenWRT单独作为无线交换机使用。爱快的系统支持VLAN绑定到不同SSID，是少数支持VLAN绑定不同SSID功能的家用路由器系统，通过这个才实现多个网段发射不同WiFi。</p>
+</li>
+</ul>
+<h3 id="网络规划"><a href="#网络规划" class="headerlink" title="网络规划"></a>网络规划</h3><p><img src="/images/a-network-architecture-design-for-home-pic1.png" alt="图1 笔者家庭网络规划"></p>
+<p>不同网段的配置：四个网段分别实现：</p>
+<ul>
+<li>服务器与管理网段：192.168.31.0&#x2F;24（31段）</li>
+<li>个人上网与配置网段：192.168.32.0&#x2F;24（32段）</li>
+<li>物联网设备专用网段：172.16.0.0&#x2F;24（172段）</li>
+<li>访客网段：10.10.20.0&#x2F;24（10段）</li>
+</ul>
+<p>通过杂牌二层网管交换机可以很轻松地划分VLAN。得益于<strong>网络功能虚拟化</strong>的缘故，来自交换机的Trunk数据进入各虚拟化宿主机时，可以轻松在宿主机系统配置虚拟交换机的方式Untag数据包，并转换为多个单独的Access端口虚拟交换机连接到各个VM的多个虚拟网卡内，在VM内就无需再配置繁杂的VLAN和拔插网线，便于VM快速接入各网段。</p>
+<p>网络架构中主路由网关为VM，主路由的VM直通三个网口，分别接入电信WAN、移动WAN和内网LAN。内网LAN通过Trunk连接到二层网管交换机内，以单臂路由实现VLAN进行网段划分。主路由同时承担防火墙功能。配置DNS服务指向各VM，内网的服务全部通过域名访问。同时通过NGINX UI内网服务反代。而在外网的服务则使用Lucky，其同时支持反代、DDNS、Socat转发、STUN-NAT打洞，是家用路由器的好帮手。</p>
+<blockquote>
+<p><strong>直面IPv6</strong> 网上许多折腾软路由的网友都惧怕IPv6，担心IPv6公网IP引发黑客攻击，并希望配置某种IPv6的NAPT方案使自己躲藏于内网之中。但互联网本就应是P2P可连接的，NAT不应成为躲避入侵的灵丹妙药。直面P2P，并妥善配置防火墙，才是安全进行上网冲浪的根本之道。</p>
+</blockquote>
+<p>下文的外部访问方案提及大量从外部联入内部的访问，同时内部不同网段也有权限限制，故需要谨慎配置防火墙：</p>
+<ol>
+<li>Linux的Netfilter&#x2F;iptables防火墙支持IPv6后缀匹配，针对家用宽带IPv6前缀周期性更新，在SLAAC EUI64方案下无需频繁更改防火墙条目；</li>
+<li>不同网段内限制访问：<ul>
+<li>31段无DHCP无WiFi，与32段可互访。</li>
+<li>32段网关指向旁路网关。</li>
+<li>172段不可访问31、32段设备，只开放路由器的DHCP和DNS端口，同时QoS出口WAN包以避免物联网设备偷带宽。</li>
+<li>10段只可访问31段的部分Web服务端口，并通过Lucky简易的WAF控制访问部分Web服务（如只可访问Jellyfin影音库），不可接入QNAP的SMB等；</li>
+</ul>
+</li>
+<li>防火墙控制多WAN分流，部分设备限制走电信或移动出口。</li>
+</ol>
+<h3 id="系统软件"><a href="#系统软件" class="headerlink" title="系统软件"></a>系统软件</h3><p>计算和网络所在的主机均安装了PVE作为宿主系统，并通过配置不同的虚拟机实现不同的功能。<br>选择PVE而不是ESXi的原因主要有二：</p>
+<ol>
+<li>开源免费</li>
+<li>同时支持LXC容器和KVM虚拟机的管理。</li>
+</ol>
+<blockquote>
+<p><strong>LXC的好处</strong> 由于服务器中的部分服务需要利用核显加速，核显同时需要为PVE宿主系统提供显示输出以备不时维护之需。核显虚拟化或直通都会导致宿主机无法显示画面。而LXC容器中的系统与宿主机共享内核，实现于当年流行的OpenVZ虚拟机类似，在LXC容器内嵌套安装Docker后，Docker容器内的服务可直接调用核显，而无需为其配置核显直通或虚拟化。</p>
+</blockquote>
+<p>NAS中的卷通过SMB协议挂载到不同的LXC和VM内进行访问。</p>
+<p>内网的服务众多，笔者在此通过配置内网DNS服务器，管理内网各设备、VM以及Web服务。<br>笔者自用的内网域名遵循如下规则：</p>
+<ul>
+<li>对于设备类，如上述提及的存储、计算、网络功能虚拟化设备，使用<code>型号.device.z.com</code>子域，如网络功能虚拟化宿主设备Fisusen-J6421小主机，使用域名<code>fisusen-j6421.device.z.com</code>进行标识。</li>
+<li>对于虚拟机类，使用<code>虚拟机系统+功能.vm.z.com</code>子域，如主路由OpenWRT虚拟机，使用域名<code>opwrt-gateway.vm.z.com</code>标识。</li>
+<li>对于Web服务类等，使用<code>Web服务名.app.z.com</code>子域，如Jellyfin服务使用<code>jellyfin.app.z.com</code>标识。</li>
+</ul>
+<p><strong>网络功能虚拟化</strong>主机中的VM大部分使用了自编译的OpenWRT系统，<strong>计算功能虚拟化</strong>主机中的VM和LXC容器，则以Debian、Windows居多。</p>
+<h1 id="软件服务"><a href="#软件服务" class="headerlink" title="软件服务"></a>软件服务</h1><p>两类服务的统一管理模式：</p>
+<ul>
+<li><p><strong>Web服务</strong>，不同的Web服务部署在不同的VM，如Jellyfin等面向内部的Web服务部署在了VM-E；而部分从云服务器迁移下来的Web服务（以域名samersions.net为主的服务），则部署于VM-W中。散落在各VM上的Web服务通过Docker进行部署并各自暴露端口到本地内网中，同时配置各VM防火墙只允许Web入口VM访问该端口。通过部署在Web入口VM的NGINX统一反代各个VM上的Web服务，并提供HTTPS支持。</p>
+</li>
+<li><p><strong>Docker管理</strong>，如上文所言，Web服务通过各VM上的Docker运行在不同VM上，因此笔者使用安装在Web入口VM处的Portainer统一管理不同VM上的Docker，仅需在受控端VM上安装<code>Portainer Agent</code>，即可通过Portainer管理远程VM的Docker，提供统一的管理支持。</p>
+</li>
+</ul>
+<h2 id="内部服务部署"><a href="#内部服务部署" class="headerlink" title="内部服务部署"></a>内部服务部署</h2><p>在<strong>计算功能虚拟化</strong>和<strong>存储服务器</strong>中部署了部分服务：</p>
+<ul>
+<li><p>PBS：虚拟机部署于QNAP上，用于定期备份PVE各VM。</p>
+</li>
+<li><p>DSM-VM黑群晖：唯一的作用是用来做OneDrive的同步盘，将OneDrive上的Calibre库同步到本地，便于Calibre-Web挂载。</p>
+</li>
+<li><p>Jellyfin：影音库，使用可以硬解的镜像，重点在配置PVE的核显硬解，所以使用Docker over LXC部署。</p>
+</li>
+<li><p>QBittorent-Web：BT下载，配合下文的外部访问方案实现真P2P直连访问，AutoBangumi依赖于此服务。</p>
+</li>
+<li><p>AutoBangumi：全自动当季时令动画下载，通过在某动画片订阅网站订阅动画片，可从该订阅网站抓取BT种子并送入QBittorrent-Web下载，重命名后送Jellyfin入库，全自动进行。</p>
+</li>
+<li><p>MC服务器：Minecraft私服，通过下文外部访问方案实现外部访问</p>
+</li>
+<li><p>Git服务器：纯命令Git服务器，简单托管代码，GitLab CE太重了</p>
+</li>
+<li><p>Windows-APP VM：Windows云桌面，方便从外部通过远程桌面RDP访问，本人无Windows电脑需要用此云桌面实现Windows功能，同时实现外部iPad等设备回家等，配合下文外部访问方案实现外部访问</p>
+</li>
+<li><p>Windows-Game VM：Windows游戏云桌面，同样是Windows云桌面，但使用Sunshine+Moonlight方式访问，因为这样才可以利用到显卡，直通了一张2TB的樊想SSD和RTX 4060Ti 16G，原计划用于游戏和跑一些桌面的AI应用如视频画质提升、硬字幕识别转写、声音伪造、SD AI画图等，但实际是游戏居多。</p>
+</li>
+<li><p>远程Linux空间：部署Code Server以及提供一个Linux的Shell供在外编写代码和验证Linux命令，本文大多数时间即通过该空间的Code Server网页在外利用碎片化时间撰写。</p>
+</li>
+<li><p>HAOS：用于部署HomeAssistant以管理物联网设备。</p>
+</li>
+</ul>
+<h2 id="外部访问方案"><a href="#外部访问方案" class="headerlink" title="外部访问方案"></a>外部访问方案</h2><p>顺应从外部访问内部的需求，针对当前大陆家宽难以获取公网IPv4地址的情况，笔者使用了Cloudflare Tunnel、IPv6直连、IPv4 STUN NAT打洞、FRP中转等方式实现内部访问。</p>
+<p>对外服务暴露与访问：</p>
+<ul>
+<li><p>Web页面：Cloudflare Tunnel；</p>
+</li>
+<li><p>Minecraft等私服协议：IPv6直连（配合DDNS+固定SRV记录实现固定网址访问）、IPv4 STUN NAT打洞（配合DDNS+CF API动态变更SRV记录端口实现固定网址访问）、FRP中转。</p>
+</li>
+</ul>
+<p>内部系统访问：</p>
+<ul>
+<li><p>Web页面：IPv6直连（高端口、配合DDNS+新的HTTPS DNS记录实现所谓“浏览器不显示端口”访问）、Cloudflare Tunnel（备用，受速度限制）；</p>
+</li>
+<li><p>Bittorrent下载：IPv6直连+IPv4 STUN NAT打洞直连（使用Lucky打洞成功后触发Webhook，执行脚本动态修改OpenWRT防火墙设置及Qbittorrent监听端口设置以放行BT协议所使用的端口）；</p>
+</li>
+<li><p>远程桌面等协议：IPv6直连、FRP中转；</p>
+</li>
+<li><p>内部系统访问间接接入：Tailscale（使用IPv6直连可获得良好的速度和延迟表现，Moonlight串流FPS游戏效果良好）。</p>
+</li>
+</ul>
+<h1 id="未来展望"><a href="#未来展望" class="headerlink" title="未来展望"></a>未来展望</h1><ol>
+<li>更统一的单点登录及授权：部分支持多用户+OAuth、OIDC认证的系统引入SSO，其他通过WAF实现；</li>
+<li>统一的内网HTTP访问：WAF作为WEB入口+无认证网站的OAuth接入；</li>
+<li>统一的证书管理器：证书申请、保管、分发；</li>
+<li>对外服务侧的故障切换；</li>
+<li>更进阶的IPv6配置。</li>
+</ol>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E7%BD%91%E7%BB%9C/">#网络</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">#服务器</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/NAS/">#NAS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/article/a-journal-from-lnmp-to-serverless/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">记一次从LNMP迁移到Serverless</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Samersions ZHONG</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E3%80%81%E7%A1%AC%E4%BB%B6%E9%80%89%E5%9E%8B%E5%8F%8A%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">基本网络架构设计、硬件选型及系统软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E9%80%89%E5%9E%8B"><span class="nav-number">2.0.1.</span> <span class="nav-text">硬件选型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%A7%84%E5%88%92"><span class="nav-number">2.0.2.</span> <span class="nav-text">网络规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6"><span class="nav-number">2.0.3.</span> <span class="nav-text">系统软件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.</span> <span class="nav-text">软件服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E9%83%A8%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2"><span class="nav-number">3.1.</span> <span class="nav-text">内部服务部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E8%AE%BF%E9%97%AE%E6%96%B9%E6%A1%88"><span class="nav-number">3.2.</span> <span class="nav-text">外部访问方案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="nav-number">4.</span> <span class="nav-text">未来展望</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
