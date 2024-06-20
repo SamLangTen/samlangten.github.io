@@ -189,7 +189,7 @@
 <p>笔者最开始使用的是海康威视MAGE20双盘位NAS，这款机器本身是ARM机器，虽然内置了百度网盘和迅雷下载等功能，但显然无法满足笔者架设影音库的需求。为了实现存储以外的高阶功能，笔者额外搭配了联想ThinkCentre M73作为服务器使用。通过ESXi实现虚拟化后，笔者在里面安装了一个Debian的Linux服务器承载Docker服务，并安装了Jellyfin、qBittorrent等服务，同时安装OpenWRT作为旁路网关。</p>
 <p>M73小主机使用的是酷睿4代的低压版处理器，性能只能勉强支撑起旁路网关和Jellyfin的基本功能，孱弱的集成显卡无法为Jellyfin服务提供硬解。这套系统使用一年后，M73小主机的硬盘突然挂掉。在这机缘巧合下，笔者换了倍控N5105小主机，并将Hypervisor平台更换成了PVE。笔者当时有个错误认知，认为CPU自带的核心显卡能随着CPU的虚拟化而虚拟化至不同的VM内，但后来才意识到CPU自带的显卡尽管与CPU刻在同一块芯片上，但结构上是完全独立的设备。得益于PVE的LXC容器功能，无需将CPU的核显虚拟化即可在Docker内调用核显，尽管LXC不是完全虚拟化，但从实际使用而言确实比KVM轻量而快速。</p>
 <p>毕业后购入威联通TS-464C四盘位，后来陆续购买机柜并升级至现在的配置，各设备也逐渐升级更换成了可以上机架的款式，且架构整体从原先“存、算网分离”逐步演化成了现在的“存、算、网分离”。</p>
-<h1 id="基本网络架构设计、硬件选型及系统软件"><a href="#基本网络架构设计、硬件选型及系统软件" class="headerlink" title="基本网络架构设计、硬件选型及系统软件"></a>基本网络架构设计、硬件选型及系统软件</h1><h3 id="硬件选型"><a href="#硬件选型" class="headerlink" title="硬件选型"></a>硬件选型</h3><p>网络架构基本思想是存、算、网分离，三个功能各有专用硬件，并通过虚拟化实现具体功能：</p>
+<h1 id="硬件选型"><a href="#硬件选型" class="headerlink" title="硬件选型"></a>硬件选型</h1><p>网络架构基本思想是存、算、网分离，三个功能各有专用硬件，并通过虚拟化实现具体功能：</p>
 <ul>
 <li><p><strong>存储</strong>：QNAP TS-464C，老牌NAS厂威联通4盘位成品，从老设备迁移过来，之后陆续购买4块HC550 16T，只运行存储功能和PBS备份；</p>
 </li>
@@ -202,7 +202,7 @@
 <li><p><strong>WiFi</strong>：小米CR6608，魔改刷了爱快的。原本内网使用爱快VM做主路由配合该WiFi进行统一热点管理，现配合OpenWRT单独作为无线交换机使用。爱快的系统支持VLAN绑定到不同SSID，是少数支持VLAN绑定不同SSID功能的家用路由器系统，通过这个才实现多个网段发射不同WiFi。</p>
 </li>
 </ul>
-<h3 id="网络规划"><a href="#网络规划" class="headerlink" title="网络规划"></a>网络规划</h3><p><img src="/images/a-network-architecture-design-for-home-pic1.png" alt="图1 笔者家庭网络规划"></p>
+<h1 id="网络规划"><a href="#网络规划" class="headerlink" title="网络规划"></a>网络规划</h1><p><img src="/images/a-network-architecture-design-for-home-pic1.png" alt="图1 笔者家庭网络规划"></p>
 <p>不同网段的配置：四个网段分别实现：</p>
 <ul>
 <li>服务器与管理网段：192.168.31.0&#x2F;24（31段）</li>
@@ -227,7 +227,7 @@
 </li>
 <li>防火墙控制多WAN分流，部分设备限制走电信或移动出口。</li>
 </ol>
-<h3 id="系统软件"><a href="#系统软件" class="headerlink" title="系统软件"></a>系统软件</h3><p>计算和网络所在的主机均安装了PVE作为宿主系统，并通过配置不同的虚拟机实现不同的功能。<br>选择PVE而不是ESXi的原因主要有二：</p>
+<h1 id="软件服务"><a href="#软件服务" class="headerlink" title="软件服务"></a>软件服务</h1><h2 id="系统软件"><a href="#系统软件" class="headerlink" title="系统软件"></a>系统软件</h2><p>计算和网络所在的主机均安装了PVE作为宿主系统，并通过配置不同的虚拟机实现不同的功能。<br>选择PVE而不是ESXi的原因主要有二：</p>
 <ol>
 <li>开源免费</li>
 <li>同时支持LXC容器和KVM虚拟机的管理。</li>
@@ -243,14 +243,14 @@
 <li>对于Web服务类等，使用<code>Web服务名.app.z.com</code>子域，如Jellyfin服务使用<code>jellyfin.app.z.com</code>标识。</li>
 </ul>
 <p><strong>网络功能虚拟化</strong>主机中的VM大部分使用了自编译的OpenWRT系统，<strong>计算功能虚拟化</strong>主机中的VM和LXC容器，则以Debian、Windows居多。</p>
-<h1 id="软件服务"><a href="#软件服务" class="headerlink" title="软件服务"></a>软件服务</h1><p>两类服务的统一管理模式：</p>
+<h2 id="应用服务"><a href="#应用服务" class="headerlink" title="应用服务"></a>应用服务</h2><p>两类应用服务的统一管理模式：</p>
 <ul>
-<li><p><strong>Web服务</strong>，不同的Web服务部署在不同的VM，如Jellyfin等面向内部的Web服务部署在了VM-E；而部分从云服务器迁移下来的Web服务（以域名samersions.net为主的服务），则部署于VM-W中。散落在各VM上的Web服务通过Docker进行部署并各自暴露端口到本地内网中，同时配置各VM防火墙只允许Web入口VM访问该端口。通过部署在Web入口VM的NGINX统一反代各个VM上的Web服务，并提供HTTPS支持。</p>
+<li><p><strong>Web服务</strong>不同的Web服务部署在不同的VM，如Jellyfin等面向内部的Web服务部署在了VM-E；而部分从云服务器迁移下来的Web服务（以域名samersions.net为主的服务），则部署于VM-W中。散落在各VM上的Web服务通过Docker进行部署并各自暴露端口到本地内网中，同时配置各VM防火墙只允许Web入口VM访问该端口。通过部署在Web入口VM的NGINX统一反代各个VM上的Web服务，并提供HTTPS支持。</p>
 </li>
 <li><p><strong>Docker管理</strong>，如上文所言，Web服务通过各VM上的Docker运行在不同VM上，因此笔者使用安装在Web入口VM处的Portainer统一管理不同VM上的Docker，仅需在受控端VM上安装<code>Portainer Agent</code>，即可通过Portainer管理远程VM的Docker，提供统一的管理支持。</p>
 </li>
 </ul>
-<h2 id="内部服务部署"><a href="#内部服务部署" class="headerlink" title="内部服务部署"></a>内部服务部署</h2><p>在<strong>计算功能虚拟化</strong>和<strong>存储服务器</strong>中部署了部分服务：</p>
+<h3 id="内部服务部署"><a href="#内部服务部署" class="headerlink" title="内部服务部署"></a>内部服务部署</h3><p>在<strong>计算功能虚拟化</strong>和<strong>存储服务器</strong>中部署了部分服务：</p>
 <ul>
 <li><p>PBS：虚拟机部署于QNAP上，用于定期备份PVE各VM。</p>
 </li>
@@ -275,16 +275,14 @@
 <li><p>HAOS：用于部署HomeAssistant以管理物联网设备。</p>
 </li>
 </ul>
-<h2 id="外部访问方案"><a href="#外部访问方案" class="headerlink" title="外部访问方案"></a>外部访问方案</h2><p>顺应从外部访问内部的需求，针对当前大陆家宽难以获取公网IPv4地址的情况，笔者使用了Cloudflare Tunnel、IPv6直连、IPv4 STUN NAT打洞、FRP中转等方式实现内部访问。</p>
-<p>对外服务暴露与访问：</p>
-<ul>
+<h3 id="外部访问方案"><a href="#外部访问方案" class="headerlink" title="外部访问方案"></a>外部访问方案</h3><p>顺应从外部访问内部的需求，针对当前大陆家宽难以获取公网IPv4地址的情况，笔者使用了Cloudflare Tunnel、IPv6直连、IPv4 STUN NAT打洞、FRP中转等方式实现内部访问。</p>
+<h4 id="对外服务暴露与访问"><a href="#对外服务暴露与访问" class="headerlink" title="对外服务暴露与访问"></a>对外服务暴露与访问</h4><ul>
 <li><p>Web页面：Cloudflare Tunnel；</p>
 </li>
 <li><p>Minecraft等私服协议：IPv6直连（配合DDNS+固定SRV记录实现固定网址访问）、IPv4 STUN NAT打洞（配合DDNS+CF API动态变更SRV记录端口实现固定网址访问）、FRP中转。</p>
 </li>
 </ul>
-<p>内部系统访问：</p>
-<ul>
+<h4 id="内部系统访问"><a href="#内部系统访问" class="headerlink" title="内部系统访问"></a>内部系统访问</h4><ul>
 <li><p>Web页面：IPv6直连（高端口、配合DDNS+新的HTTPS DNS记录实现所谓“浏览器不显示端口”访问）、Cloudflare Tunnel（备用，受速度限制）；</p>
 </li>
 <li><p>Bittorrent下载：IPv6直连+IPv4 STUN NAT打洞直连（使用Lucky打洞成功后触发Webhook，执行脚本动态修改OpenWRT防火墙设置及Qbittorrent监听端口设置以放行BT协议所使用的端口）；</p>
@@ -445,7 +443,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E3%80%81%E7%A1%AC%E4%BB%B6%E9%80%89%E5%9E%8B%E5%8F%8A%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">基本网络架构设计、硬件选型及系统软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E9%80%89%E5%9E%8B"><span class="nav-number">2.0.1.</span> <span class="nav-text">硬件选型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%A7%84%E5%88%92"><span class="nav-number">2.0.2.</span> <span class="nav-text">网络规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6"><span class="nav-number">2.0.3.</span> <span class="nav-text">系统软件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.</span> <span class="nav-text">软件服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E9%83%A8%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2"><span class="nav-number">3.1.</span> <span class="nav-text">内部服务部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E8%AE%BF%E9%97%AE%E6%96%B9%E6%A1%88"><span class="nav-number">3.2.</span> <span class="nav-text">外部访问方案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="nav-number">4.</span> <span class="nav-text">未来展望</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E9%80%89%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">硬件选型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%A7%84%E5%88%92"><span class="nav-number">3.</span> <span class="nav-text">网络规划</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%9C%8D%E5%8A%A1"><span class="nav-number">4.</span> <span class="nav-text">软件服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6"><span class="nav-number">4.1.</span> <span class="nav-text">系统软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1"><span class="nav-number">4.2.</span> <span class="nav-text">应用服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E9%83%A8%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2"><span class="nav-number">4.2.1.</span> <span class="nav-text">内部服务部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E8%AE%BF%E9%97%AE%E6%96%B9%E6%A1%88"><span class="nav-number">4.2.2.</span> <span class="nav-text">外部访问方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E5%A4%96%E6%9C%8D%E5%8A%A1%E6%9A%B4%E9%9C%B2%E4%B8%8E%E8%AE%BF%E9%97%AE"><span class="nav-number">4.2.2.1.</span> <span class="nav-text">对外服务暴露与访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E9%83%A8%E7%B3%BB%E7%BB%9F%E8%AE%BF%E9%97%AE"><span class="nav-number">4.2.2.2.</span> <span class="nav-text">内部系统访问</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="nav-number">5.</span> <span class="nav-text">未来展望</span></a></li></ol>
     </div>
 </div>
         </aside>
