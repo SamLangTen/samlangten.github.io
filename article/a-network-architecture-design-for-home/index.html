@@ -193,7 +193,7 @@
 <ul>
 <li><p><strong>存储</strong>：QNAP TS-464C，老牌NAS厂威联通4盘位成品，从老设备迁移过来，之后陆续购买4块HC550 16T，只运行存储功能和PBS备份；</p>
 </li>
-<li><p><strong>网络</strong>：Fisusen-J641，标准1U高度小主机性能足够，跑个若干个网络相关VM不在话下。如果不强求算网分离甚至可以跑下面的一些内部服务；</p>
+<li><p><strong>网络</strong>：Fisusen-J6421，标准1U高度小主机性能足够，跑若干个网络相关VM不在话下。如果不强求算网分离甚至可以跑下面的一些内部服务；</p>
 </li>
 <li><p><strong>计算</strong>：i7-13700K，核心多，配合PVE在Web页面可以绑核，控制VM在小核和大核内跑很舒服，64G内存跑VM基本已经足够，安装显卡和多个SSD供直通。该机是从电脑城奸商配的DIY主机，使用标准4U机箱放托盘上；</p>
 </li>
@@ -203,7 +203,7 @@
 </li>
 </ul>
 <h1 id="网络规划"><a href="#网络规划" class="headerlink" title="网络规划"></a>网络规划</h1><p><img src="/images/a-network-architecture-design-for-home-pic1.png" alt="图1 笔者家庭网络规划"></p>
-<p>不同网段的配置：四个网段分别实现：</p>
+<p>不同网段的配置，四个网段分别实现不同的业务功能：</p>
 <ul>
 <li>服务器与管理网段：192.168.31.0&#x2F;24（31段）</li>
 <li>个人上网与配置网段：192.168.32.0&#x2F;24（32段）</li>
@@ -222,7 +222,7 @@
 <li>31段无DHCP无WiFi，与32段可互访。</li>
 <li>32段网关指向旁路网关。</li>
 <li>172段不可访问31、32段设备，只开放路由器的DHCP和DNS端口，同时QoS出口WAN包以避免物联网设备偷带宽。</li>
-<li>10段只可访问31段的部分Web服务端口，并通过Lucky简易的WAF控制访问部分Web服务（如只可访问Jellyfin影音库），不可接入QNAP的SMB等；</li>
+<li>10段只可访问31段的部分Web服务端口，并通过NGINX的WAF控制访问部分Web服务（如只可访问Jellyfin影音库），不可接入QNAP的SMB等；</li>
 </ul>
 </li>
 <li>防火墙控制多WAN分流，部分设备限制走电信或移动出口。</li>
@@ -245,41 +245,41 @@
 <p><strong>网络功能虚拟化</strong>主机中的VM大部分使用了自编译的OpenWRT系统，<strong>计算功能虚拟化</strong>主机中的VM和LXC容器，则以Debian、Windows居多。</p>
 <h2 id="应用服务"><a href="#应用服务" class="headerlink" title="应用服务"></a>应用服务</h2><p>两类应用服务的统一管理模式：</p>
 <ul>
-<li><p><strong>Web服务</strong>不同的Web服务部署在不同的VM，如Jellyfin等面向内部的Web服务部署在了VM-E；而部分从云服务器迁移下来的Web服务（以域名samersions.net为主的服务），则部署于VM-W中。散落在各VM上的Web服务通过Docker进行部署并各自暴露端口到本地内网中，同时配置各VM防火墙只允许Web入口VM访问该端口。通过部署在Web入口VM的NGINX统一反代各个VM上的Web服务，并提供HTTPS支持。</p>
+<li><p><strong>Web服务</strong>，不同的Web服务部署在不同的VM，如Jellyfin等面向内部的Web服务部署在了娱乐VM；而部分从云服务器迁移下来的Web服务（以域名samersions.net为主的服务），则部署于网站VM中。散落在各VM上的Web服务通过Docker进行部署并各自暴露端口到本地内网中，同时配置各VM防火墙只允许Web入口VM访问该端口。通过部署在Web入口VM的NGINX统一反代各个VM上的Web服务，并提供HTTPS支持。</p>
 </li>
 <li><p><strong>Docker管理</strong>，如上文所言，Web服务通过各VM上的Docker运行在不同VM上，因此笔者使用安装在Web入口VM处的Portainer统一管理不同VM上的Docker，仅需在受控端VM上安装<code>Portainer Agent</code>，即可通过Portainer管理远程VM的Docker，提供统一的管理支持。</p>
 </li>
 </ul>
-<h3 id="内部服务部署"><a href="#内部服务部署" class="headerlink" title="内部服务部署"></a>内部服务部署</h3><p>在<strong>计算功能虚拟化</strong>和<strong>存储服务器</strong>中部署了部分服务：</p>
+<h3 id="内部服务部署"><a href="#内部服务部署" class="headerlink" title="内部服务部署"></a>内部服务部署</h3><p>在<strong>计算功能虚拟化</strong>和<strong>存储服务器</strong>中部署了多个服务，包括但不限于：</p>
 <ul>
-<li><p>PBS：虚拟机部署于QNAP上，用于定期备份PVE各VM。</p>
+<li><p>PBS：虚拟机部署于QNAP上，用于定期备份PVE各VM；</p>
 </li>
-<li><p>DSM-VM黑群晖：唯一的作用是用来做OneDrive的同步盘，将OneDrive上的Calibre库同步到本地，便于Calibre-Web挂载。</p>
+<li><p>DSM-VM黑群晖：唯一的作用是用来做OneDrive的同步盘，将OneDrive上的Calibre库同步到本地，便于Calibre-Web挂载；</p>
 </li>
-<li><p>Jellyfin：影音库，使用可以硬解的镜像，重点在配置PVE的核显硬解，所以使用Docker over LXC部署。</p>
+<li><p>Jellyfin：影音库，使用可以硬解的镜像，重点在配置PVE的核显硬解，所以使用基于LXC上的Docker进行部署；</p>
 </li>
-<li><p>QBittorent-Web：BT下载，配合下文的外部访问方案实现真P2P直连访问，AutoBangumi依赖于此服务。</p>
+<li><p>QBittorent-Web：BT下载，配合下文的外部访问方案实现真P2P直连访问，AutoBangumi依赖于此服务；</p>
 </li>
-<li><p>AutoBangumi：全自动当季时令动画下载，通过在某动画片订阅网站订阅动画片，可从该订阅网站抓取BT种子并送入QBittorrent-Web下载，重命名后送Jellyfin入库，全自动进行。</p>
+<li><p>AutoBangumi：全自动当季时令动画下载，通过在某动画片订阅网站订阅动画片，可从该订阅网站抓取BT种子并送入QBittorrent-Web下载，重命名后送Jellyfin入库，全自动进行；</p>
 </li>
-<li><p>MC服务器：Minecraft私服，通过下文外部访问方案实现外部访问</p>
+<li><p>MC服务器：Minecraft私服，通过下文外部访问方案实现外部访问；</p>
 </li>
-<li><p>Git服务器：纯命令Git服务器，简单托管代码，GitLab CE太重了</p>
+<li><p>Git服务器：纯命令Git服务器，简单托管代码，GitLab CE太重了；</p>
 </li>
-<li><p>Windows-APP VM：Windows云桌面，方便从外部通过远程桌面RDP访问，本人无Windows电脑需要用此云桌面实现Windows功能，同时实现外部iPad等设备回家等，配合下文外部访问方案实现外部访问</p>
+<li><p>Windows-APP VM：Windows云桌面，方便从外部通过远程桌面RDP访问，笔者无Windows电脑需要用此云桌面实现Windows功能，同时实现外部iPad等设备回家等，配合下文外部访问方案实现外部访问；</p>
 </li>
-<li><p>Windows-Game VM：Windows游戏云桌面，同样是Windows云桌面，但使用Sunshine+Moonlight方式访问，因为这样才可以利用到显卡，直通了一张2TB的樊想SSD和RTX 4060Ti 16G，原计划用于游戏和跑一些桌面的AI应用如视频画质提升、硬字幕识别转写、声音伪造、SD AI画图等，但实际是游戏居多。</p>
+<li><p>Windows-Game VM：Windows游戏云桌面，同样是Windows云桌面，但使用Sunshine+Moonlight方式访问，因为这样才可以利用到显卡，直通了一张2TB的樊想SSD和RTX 4060Ti 16G，原计划用于游戏和跑一些桌面的AI应用如视频画质提升、硬字幕识别转写、声音伪造、SD AI画图等，但实际是游戏居多；</p>
 </li>
-<li><p>远程Linux空间：部署Code Server以及提供一个Linux的Shell供在外编写代码和验证Linux命令，本文大多数时间即通过该空间的Code Server网页在外利用碎片化时间撰写。</p>
+<li><p>远程Linux空间：部署Code Server以及提供一个Linux的Shell供在外编写代码和验证Linux命令，本文大多数时间即通过该空间的Code Server网页在外利用碎片化时间撰写；</p>
 </li>
-<li><p>HAOS：用于部署HomeAssistant以管理物联网设备。</p>
+<li><p>HAOS：用于部署Home Assistant以管理物联网设备。</p>
 </li>
 </ul>
 <h3 id="外部访问方案"><a href="#外部访问方案" class="headerlink" title="外部访问方案"></a>外部访问方案</h3><p>顺应从外部访问内部的需求，针对当前大陆家宽难以获取公网IPv4地址的情况，笔者使用了Cloudflare Tunnel、IPv6直连、IPv4 STUN NAT打洞、FRP中转等方式实现内部访问。</p>
 <h4 id="对外服务暴露与访问"><a href="#对外服务暴露与访问" class="headerlink" title="对外服务暴露与访问"></a>对外服务暴露与访问</h4><ul>
 <li><p>Web页面：Cloudflare Tunnel；</p>
 </li>
-<li><p>Minecraft等私服协议：IPv6直连（配合DDNS+固定SRV记录实现固定网址访问）、IPv4 STUN NAT打洞（配合DDNS+CF API动态变更SRV记录端口实现固定网址访问）、FRP中转。</p>
+<li><p>Minecraft等私服协议：IPv6直连（配合DDNS+固定SRV记录实现固定网址访问）、IPv4 STUN NAT打洞（配合DDNS+Cloudflare API动态变更SRV记录端口实现固定网址访问）、FRP中转。</p>
 </li>
 </ul>
 <h4 id="内部系统访问"><a href="#内部系统访问" class="headerlink" title="内部系统访问"></a>内部系统访问</h4><ul>
@@ -293,11 +293,11 @@
 </li>
 </ul>
 <h1 id="未来展望"><a href="#未来展望" class="headerlink" title="未来展望"></a>未来展望</h1><ol>
-<li>更统一的单点登录及授权：部分支持多用户+OAuth、OIDC认证的系统引入SSO，其他通过WAF实现；</li>
-<li>统一的内网HTTP访问：WAF作为WEB入口+无认证网站的OAuth接入；</li>
-<li>统一的证书管理器：证书申请、保管、分发；</li>
-<li>对外服务侧的故障切换；</li>
-<li>更进阶的IPv6配置。</li>
+<li><strong>更统一的单点登录用户认证。</strong><br>当前内网服务众多，每个Web服务都有自己的用户认证和授权系统，记忆多个密码极为麻烦。计划添加统一的单点登录用户认证系统，部分本身支持多用户+OAuth、OIDC认证的系统（如Jellyfin、Portainer等）引入SSO，其他不支持用户认证（如QBittorrent-Web、TinyMediaManager WebVNC版等）则通过WAF（如<a class="link"   target="_blank" rel="noopener" href="https://github.com/oauth2-proxy/oauth2-proxy" >oauth2-proxy<i class="fas fa-external-link-alt"></i></a>）实现OAuth2.0认证接入。</li>
+<li><strong>统一的证书管理器。</strong><br>当前证书申请各自为政，除了用来反代内网Web服务的NGINX需要证书外，PVE的Web管理系统、QNAP系统的Web页面等需要使用证书，亟需一个统一的证书管理器、保管、分发。</li>
+<li><strong>对外服务侧的故障切换。</strong><br>有了家用服务器后，部分原先运行在云服务器上的动态Web服务都转移到了线下，如笔者的<a class="link"   target="_blank" rel="noopener" href="https://sams.top/blog" >短链接重定向服务<i class="fas fa-external-link-alt"></i></a>。然而家宽SLA较低，发生短线时亟需一台廉价的云服务器做备份以临时应付流量。计划配置数据库同步和NGINX配置同步，并利用部分新式DNS记录以实现部分Web服务的故障转移。</li>
+<li><strong>更进阶的IPv6配置。</strong><br>当前由于IPv6在部分互联网服务畅游上仍有不足，笔者暂时无暇顾及这部分业务的IPv6配置。目前仅有服务器与管理网段（31网段）配置下发IPv6前缀，未来需将IPv6配置到每个网段中。</li>
+<li><strong>严格限制个人上网与配置网段（32网段）对服务器网段（31网段）的访问。</strong><br>当前32网段实际上充当了管理服务器的功能，因为31网段和32网段的防火墙配置上是完全可互访的。未来将进一步限制32网段对31网段的访问，如当前被反代的内部Web服务的原始HTTP服务端口目前可以被32网段直接访问，未来将只允许通过NGINX反代服务器访问32网段内，同时限制访问各服务器的各类配置端口如SSH端口等。</li>
 </ol>
 
         </div>
