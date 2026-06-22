@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Samersions ZHONG">
+    
+    <title>
+        
+            macOS过渡：从视窗到水果系统的个人经验谈 |
+        
+        山神斯博客
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/samlangten.jpg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"blog.samersions.net","root":"/","language":"zh-CN"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066CC","title":"山神斯博客","author":"Samersions ZHONG","avatar":"/images/samlangten.jpg","logo":"/images/samlangten.jpg","favicon":"/images/samlangten.jpg","url":"https://blog.samersions.net"},"menu":{"home":"/","archives":"/archives"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/samlangten","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"mailto://samlangten@outlook.com"}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true},"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"created","post_datetime_format":"YYYY-MM-DD"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":false,"preload":false},"comment":{"enable":true,"use":"artalk","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":"https://artalk.samersions.net"},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":false},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"style":{"article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."}},"home_article":{"category":{"enable":true,"limit":3},"tag":{"enable":true,"limit":5}},"code_copy":{"enable":true,"style":"default"},"root":"","source_data":{},"version":"4.1.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/samlangten.jpg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               山神斯博客
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                
+                                首页
+                            </a>
+                        </li>
+                    
+                        
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                
+                                归档
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/"
+                    >首页</a>
+                </li>
+            
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >归档</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        macOS过渡：从视窗到水果系统的个人经验谈
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/samlangten.jpg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Samersions ZHONG</span>
+                                
+                                    <span class="author-badge">Lv1</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2026-06-22 22:42:29</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Mon Jun 22 2026 22:42:29 GMT+0800">2026-06-22 22:42:29</span>
+            </span>
+        
+
+        
+
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h1><p>陆续使用 macOS 也接近六年了，从一开始为了界面美观和尝鲜而安装 macOS，到如今将其作为平日除了工作外唯一正常使用的操作系统，在此简单谈谈笔者的经验。</p>
+<h2 id="惨淡的Linux桌面及难用的Windows命令环境和终端（曾经）"><a href="#惨淡的Linux桌面及难用的Windows命令环境和终端（曾经）" class="headerlink" title="惨淡的Linux桌面及难用的Windows命令环境和终端（曾经）"></a>惨淡的Linux桌面及难用的Windows命令环境和终端（曾经）</h2><p>当年，笔者曾是一名坚定的 Windows 系统拥趸。尽管学习编程已有多年，但由于长期扎根于 .NET 技术栈并深度依赖 Visual Studio，笔者一直没有意识到掌握终端（Terminal）命令行的必要性。</p>
+<p>转折发生在大学二年级。当时，专业选修课开始涉及 Linux 系统；随着后续相关课程的增加，对类 Unix 系统命令的学习与使用需求也日益凸显。幸运的是，大学期间微软恰好推出了 WSL（Windows Subsystem for Linux），让笔者得以用极低的门槛入门 Linux。但很快笔者便发现，WSL 毕竟不是一个完整的 Linux 系统，部分命令的执行效果与延迟表现，与真实的物理机环境仍有不少出入。</p>
+<p>到了大二寒假，在一位同学的极力推荐下，笔者开始尝试 Linux 桌面环境，甚至将其作为部分设备的主力操作系统。在经历了一番挑选桌面环境、寻找 Windows 软件替代品的折腾后，笔者才算真正迈进了 Linux 桌面生态的大门。不得不说，对于笔者当时那台 2013 款的 Sony VAIO Pro 13 来说，Linux 极致节省系统资源的特性，硬生生让这台濒临报废的机器作为备用机又多服役了几年。最直观的例子便是：在当时的 Windows 10 环境下，运行 Minecraft 1.7.2 只有可怜的 30 多帧；而换上 Arch Linux + KDE 环境后，帧率竟然能稳在 50 多帧。此外，笔者本科毕业设计所需的仿真器及大量工具链，在 Linux 下有着极佳的编译体验；反观 Windows 环境下则是两眼一抹黑，完全无法照搬官方给出的操作步骤。</p>
+<p>然而，正当笔者美滋滋地计划在这个极度省资源的 Linux 环境下偶尔玩玩游戏，或者熬夜死磕毕业论文时，却一头撞上了全中国 Linux 用户都会面临的终极难题：怎么用微信和 QQ？</p>
+<p>时至今日，得益于“信创”政策的推动，国产软件纷纷主动适配各类信创环境，也让广大的 Linux 发行版用户跟着沾了光。但在笔者上大学的 2010 年代末，绝大多数国产软件压根就没有 Linux 版本的概念。QQ 虽然曾出过 Linux 版，但版本号永远停滞在了 2008 年；微信更是自打诞生起就与 Linux 无缘。若是想处理文档，当时的 WPS for Linux 在功能上也与 Windows 版存在些许差异；至于各类常用网盘等工具，更是查无此版。</p>
+<p>为了能在 Linux 桌面下满足日常通讯需求，社区可谓八仙过海。有人将网页版微信套了个壳做成客户端，但体验与原版相去甚远；Linux 下虽然有能运行 Windows 程序的 Wine 环境，但原版 Wine 根本跑不起来原生的 QQ 和微信。面对这一窘境，国内另一个优秀的 Linux 发行版 Deepin（深度）的开发团队站了出来，他们对 Wine 进行了深度魔改，终于让 Windows 版的 QQ 和微信在 Linux 上跑了起来。得益于笔者使用的是 Arch Linux，坐拥庞大且丰富的 AUR 软件库，这才得以非常便捷地体验到了基于 Deepin 修改版 Wine 运行的社交软件。（说句题外话，Deepin 背后的开发公司后来被整合，如今其商业版便是许多企事业单位正在广泛使用的统信 UOS。）</p>
+<p>尽管依靠魔改的 Wine 勉强解决了 QQ 和微信的温饱问题，但其 UI 显示效果总是不尽如人意，安装和维护也颇为繁琐。不过，在经过了长时间的 Linux 熏陶后，笔者已经深深习惯了 Unix 式的终端操作与文件系统路径。此时，一个直击灵魂的问题摆在了面前：世界上到底有没有一种系统，既能保留优雅的 Unix 终端命令，又能无缝运行海量的闭源商业软件呢？</p>
+<p>当初那位把笔者拉进 Arch Linux 坑的同学，此刻又给出了另一个答案——macOS。</p>
+<h1 id="从黑到白到黑到白"><a href="#从黑到白到黑到白" class="headerlink" title="从黑到白到黑到白"></a>从黑到白到黑到白</h1><h2 id="初尝黑果"><a href="#初尝黑果" class="headerlink" title="初尝黑果"></a>初尝黑果</h2><p>产生对 macOS 的兴趣后，笔者在大四时第一次尝试在一台 ThinkPad T580 上安装 macOS。为了不影响原有的 Windows 系统，笔者大费周章地拆机更换了一块新 SSD，却因手法生疏在机器外壳上留下了不少划痕。当时，笔者对黑苹果的安装原理一窍不通，只能依样画葫芦地按照线上教程下载 EFI 文件<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="UEFI 架构的 x86 设备引导操作系统需要的文件，黑苹果通常将引导程序和一系列内核扩展（即驱动）放置在此处。
+">[1]</span></a></sup>并放入 EFI 分区，再通过傻瓜式的系统恢复镜像安装了 macOS 10.15。折腾了一整晚，终于进入了期待已久的 macOS 系统。然而，新鲜感过后便是手足无措：本就陌生的操作逻辑，加上驱动不完善导致的各种奇怪 Bug，让笔者倍感“焦虑”。结果，进入系统不到 30 分钟，笔者就默默关机，将 SSD 换回了原来的 Windows 硬盘。刚刚萌生的 macOS 体验之火，就这样被复杂的操作浇灭了。</p>
+<p>时间一晃来到研一上学期。受疫情影响，笔者无法像本科时那样随意外出游玩。无处发泄的精力，加上实验室里 MacBook 数量的不断增多（不得不承认，水果的教育优惠对产品普及起到了极其正面的作用），在好奇心与少许攀比心理的共同驱使下，笔者决定再次挑战黑苹果。这次“惨遭毒手”的依然是那台 ThinkPad T580。不过，这次笔者认真做足了功课。由于早期笔记本自带的 Intel 无线网卡无法驱动，为了追求所谓的“完美黑苹果”，笔者花了 100 多元购买了免驱的 DW1820a 网卡——要知道，同样的价格在当时已经能买到一张性能极佳的正经 Wi-Fi 6 网卡了。得益于大四暑假在 Linux 系统上安装 macOS 主题包的折腾经历，笔者对 macOS 的操作逻辑已有初步了解，因此这次重装后不再对界面感到陌生。在硬着头皮装好常用软件（尤其是心心念念的 QQ 和微信）并将 Shell 换成 zsh 后，笔者算是真正迈进了 macOS 的大门。然而，这段体验同样未能持久。深度使用后笔者发现，即使有网友提供的所谓“完美 EFI 驱动包”，黑苹果在驱动稳定性上始终不如白苹果省心。特别是在电源管理方面，笔记本在经历长时间休眠后唤醒时，部分驱动会随机失效，导致网络中断、键盘与触摸板失灵，甚至直接断电。在断断续续体验了两周后，笔者最终还是无奈放弃了黑苹果，并专门发了条朋友圈吐槽。</p>
+<p>到了研一下学期，由于持续封校实在无聊至极，笔者再次按捺不住折腾的心。这次的目标转向了实验室配发给笔者使用的台式电脑。相比于笔记本，台式机的黑苹果配置要简单得多，至少省去了驱动无线网卡、触摸板和内置键盘的烦恼。由于这台电脑没有现成的 EFI 配置可抄，笔者决定从零开始。上课时，笔者偷偷用笔记本翻阅 OpenCore 的官方教程，逐渐理清了 EFI 驱动包的文件结构，也弄懂了不同 CPU 架构该如何正确选择各类 ACPI 补丁和驱动。在熟读教程并一步步手工配置后，笔者终于在一台冷门型号的台式机上成功引导了纯净的 macOS 11。</p>
+<p>自此以后，笔者便一发不可收拾，接连在实验室的多台电脑上从零配置 EFI 驱动，并解决了 USB 接口数量限制<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="原生的 Mac 设备 USB 数量有限，因此 macOS 对 USB 端口数量有一个“写死”的上限，对于 USB较多的台式机，需要通过配置超过数量的 USB 口停用或关闭 USB 3.0 通道。">[2]</span></a></sup>、HDMI 映射导致黑屏无法唤醒以及 DRM 加密等一系列棘手问题。为了追求极致的完美体验，笔者甚至查阅资料，选型组装了一台硬件配置与 x86 架构白苹果完全一致的台式机，顺带也将那台 ThinkPad T580 重新装回了黑苹果系统。</p>
+<h2 id="奔赴白果"><a href="#奔赴白果" class="headerlink" title="奔赴白果"></a>奔赴白果</h2><p>经过长期的摸索，笔者对黑苹果的安装与日常维护已是轻车熟路。然而，随着水果公司在 2020 年全面转向自研芯片，黑苹果的生存空间日益逼仄。从 macOS 11 开始，现有的驱动已难以支撑起绝对完美的体验：首当其冲的便是 WhateverGreen 显卡驱动的 DRM 加密失效，导致使用 Safari 播放 Netflix 时频频报错，换用 Chrome 也只能以 720P 画质观看；到了 macOS 13，强制解除 USB 接口数量限制的驱动也彻底失效，用户只能先在低版本系统中做好 USB 接口定制映射后才能升级。此外，每一次 macOS 升级都会淘汰一批老旧机型，底层驱动也会随之被无情移除，导致许多原本兼容的 CPU、显卡和无线网卡永远停留在旧版本，无法再跟随系统更新。</p>
+<p>考虑到上述种种限制，尚在读研的笔者决定正式投入“白苹果”的怀抱。由于囊中羞涩，笔者在研一暑假先是入手了一台官翻版的 Mac mini M1（16G + 512G）。之后，又通过闲鱼倒买倒卖等方式，陆陆续续换用了 MacBook Air M1 和 MacBook Pro M1 Pro 等设备，终于完整体验到了水果笔记本出色的工业设计与顶级的屏幕素质。不过在这期间也发生过小插曲：笔者曾一度感到自己被苹果生态“绑架”，冲动之下竟将全家桶变卖一空。</p>
+<p>在经历了三年的来回折腾并交了不少“学费”后，笔者终于领悟到一个朴素的道理：电脑终究只是工具，人应该是去使用工具，而不是被工具折腾。于是在研二后期，笔者心态平和地重新购入了一台官翻版 MacBook Pro M1 Pro。这台机器作为纯粹的生产力工具，陪伴笔者顺利完成了小论文撰写、毕业答辩以及求职面试，直到稳定服役三年后的 2025 年，笔者才将其变卖并升级了新设备。</p>
+<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>如今，笔者依然将 macOS 作为主力操作系统，但也更加客观地认识到：Windows 在游戏娱乐以及运行冷门专业软件方面，有着不可替代的地位。因此，每逢高考结束的升学季，笔者总是建议学弟学妹们“非必要不买 Mac”。除非你是社科类或计算机专业的学生，日常所需的软件在 macOS 上都有优秀的替代品，亦或者具备较强的动手能力去解决各类软件兼容性问题，否则请谨慎入坑。</p>
+<p>随着水果 WWDC 2026 开发者大会的召开，明确了 2026 年末推出的 macOS 27 将彻底停止对 x86 架构设备的支持。这也意味着，长达近 20 年的黑苹果时代正式走向终结。但我们不应忘记各大社区贡献者们为黑苹果开发所付出的努力。回首过去，笔者始终觉得“黑苹果”其实是水果公司布下的一个阳谋：它以极低的门槛让用户初步接触到 macOS，当用户习惯并产生依赖后，自然而然就会萌生购买“白苹果”的想法。仅笔者身边，就有好几位朋友是通过这种方式，心甘情愿地迈入了 Mac 设备的大门。</p>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">UEFI 架构的 x86 设备引导操作系统需要的文件，黑苹果通常将引导程序和一系列内核扩展（即驱动）放置在此处。<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">原生的 Mac 设备 USB 数量有限，因此 macOS 对 USB 端口数量有一个“写死”的上限，对于 USB较多的台式机，需要通过配置超过数量的 USB 口停用或关闭 USB 3.0 通道。<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/article/a-network-architecture-design-for-home/"
+                                   title="自用家庭网络架构设计及服务器配置浅谈"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">自用家庭网络架构设计及服务器配置浅谈</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="artalk-comment-container">
+        <link rel="stylesheet" href="https://artalk.samersions.net/dist/Artalk.css" />
+        <div id="artalk-comment"></div>
+        <script 
+                src="https://artalk.samersions.net/dist/Artalk.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.initArtalkTheme) {
+            window.KeepCommentPlugin.initArtalkTheme = () => {
+              return document.documentElement.classList.contains('dark-mode')
+            }
+          }
+
+          if (!window.KeepCommentPlugin?.changeArtalkTheme) {
+            window.KeepCommentPlugin.changeArtalkTheme = () => {
+              Artalk && Artalk.setDarkMode(window.KeepCommentPlugin.initArtalkTheme())
+            }
+          }
+
+          window.KeepCommentPlugin.artalkOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+          window.KeepCommentPlugin.artalkOptions.el = '#artalk-comment'
+          window.KeepCommentPlugin.artalkOptions.server = 'https://artalk.samersions.net'
+          window.KeepCommentPlugin.artalkOptions.locale = 'zh-CN'
+          window.KeepCommentPlugin.artalkOptions.site = '山神斯博客' || '山神斯博客'
+          window.KeepCommentPlugin.artalkOptions.darkMode = window.KeepCommentPlugin.initArtalkTheme()
+          window.KeepCommentPlugin.artalkOptions.countEl = '.post-comments-count'
+
+          window.KeepCommentPlugin.initArtalk = () => {
+            if (window?.Artalk) {
+              Artalk.init(window.KeepCommentPlugin.artalkOptions)
+              window.KeepCommentPlugin.hideLoading()
+
+              const toggleThemeBtn = document.querySelector('.tool-toggle-theme-mode')
+              toggleThemeBtn && toggleThemeBtn.addEventListener('click', () => {
+                window.KeepCommentPlugin.changeArtalkTheme()
+              })
+
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initArtalk()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initArtalk()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initArtalk)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%98%E8%B5%B7"><span class="nav-number">1.</span> <span class="nav-text">缘起</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%83%A8%E6%B7%A1%E7%9A%84Linux%E6%A1%8C%E9%9D%A2%E5%8F%8A%E9%9A%BE%E7%94%A8%E7%9A%84Windows%E5%91%BD%E4%BB%A4%E7%8E%AF%E5%A2%83%E5%92%8C%E7%BB%88%E7%AB%AF%EF%BC%88%E6%9B%BE%E7%BB%8F%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">惨淡的Linux桌面及难用的Windows命令环境和终端（曾经）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E9%BB%91%E5%88%B0%E7%99%BD%E5%88%B0%E9%BB%91%E5%88%B0%E7%99%BD"><span class="nav-number">2.</span> <span class="nav-text">从黑到白到黑到白</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%B0%9D%E9%BB%91%E6%9E%9C"><span class="nav-number">2.1.</span> <span class="nav-text">初尝黑果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%94%E8%B5%B4%E7%99%BD%E6%9E%9C"><span class="nav-number">2.2.</span> <span class="nav-text">奔赴白果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E7%BB%AD"><span class="nav-number">3.</span> <span class="nav-text">后续</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2026
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Samersions ZHONG</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%98%E8%B5%B7"><span class="nav-number">1.</span> <span class="nav-text">缘起</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%83%A8%E6%B7%A1%E7%9A%84Linux%E6%A1%8C%E9%9D%A2%E5%8F%8A%E9%9A%BE%E7%94%A8%E7%9A%84Windows%E5%91%BD%E4%BB%A4%E7%8E%AF%E5%A2%83%E5%92%8C%E7%BB%88%E7%AB%AF%EF%BC%88%E6%9B%BE%E7%BB%8F%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">惨淡的Linux桌面及难用的Windows命令环境和终端（曾经）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E9%BB%91%E5%88%B0%E7%99%BD%E5%88%B0%E9%BB%91%E5%88%B0%E7%99%BD"><span class="nav-number">2.</span> <span class="nav-text">从黑到白到黑到白</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%B0%9D%E9%BB%91%E6%9E%9C"><span class="nav-number">2.1.</span> <span class="nav-text">初尝黑果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%94%E8%B5%B4%E7%99%BD%E6%9E%9C"><span class="nav-number">2.2.</span> <span class="nav-text">奔赴白果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E7%BB%AD"><span class="nav-number">3.</span> <span class="nav-text">后续</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
